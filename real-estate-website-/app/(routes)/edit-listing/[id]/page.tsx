@@ -4,6 +4,7 @@ import React from 'react'
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 import {
   Select,
@@ -12,13 +13,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Button } from '@/components/ui/button'
 
 
 const EditListing = () => {
   return (
     <div className='px-10 md:px-36 my-10'>
       <h2 className='font-bold text-2xl'>Enter some more details about your listing</h2>
-      <div className='p-8 shadow-md rounded-lg'>
+      <div className='p-8 shadow-md rounded-lg space-y-10'>
         <div className='grid grid-cols-1 md:grid-cols-3'>
           <div className='flex flex-col gap-2'>
             <h2 className='text-lg text-slate-400'>Rent or Sell?</h2>
@@ -49,22 +51,58 @@ const EditListing = () => {
 
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
           <div className='flex flex-col gap-2'>
             <h2 className='text-gray-500'>Bedroom</h2>
-            <Input placeholder='Ex.2' name='bedroom'/>
+            <Input type='number' placeholder='Ex.2' name='bedroom'/>
           </div>
           <div className='flex flex-col gap-2'>
             <h2 className='text-gray-500'>Bathroom</h2>
-            <Input placeholder='Ex.2' name='bathroom'/>
+            <Input type='number' placeholder='Ex.2' name='bathroom'/>
           </div>
           <div className='flex flex-col gap-2'>
             <h2 className='text-gray-500'>Built In</h2>
-            <Input placeholder='Ex.1900 Sq.ft' name='builtIn'/>
+            <Input type='number' placeholder='Ex.1900 Sq.ft' name='builtIn'/>
           </div>
         </div>
 
-        
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+          <div className='flex flex-col gap-2'>
+            <h2 className='text-gray-500'>Parking</h2>
+            <Input type='number' placeholder='Ex.2' name='parking'/>
+          </div>
+          <div className='flex flex-col gap-2'>
+            <h2 className='text-gray-500'>Lot Size (Sq.ft)</h2>
+            <Input type='number' placeholder='' name='lotSize'/>
+          </div>
+          <div className='flex flex-col gap-2'>
+            <h2 className='text-gray-500'>Area (Sq.ft)</h2>
+            <Input type='number' placeholder='Ex.1900' name='area'/>
+          </div>
+        </div>
+
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+          <div className='flex flex-col gap-2'>
+            <h2 className='text-gray-500'>Selling Price ($)</h2>
+            <Input type='number' placeholder='400000' name='sellingPrice'/>
+          </div>
+          <div className='flex flex-col gap-2'>
+            <h2 className='text-gray-500'>HOA (Per Month) ($)</h2>
+            <Input type='number' placeholder='100' name='hoa'/>
+          </div>
+        </div>
+
+        <div className='grid grid-cols-1 gap-10'>
+          <div className='flex flex-col gap-2'>
+            <h2 className='text-gray-500'>Description</h2>
+            <Textarea typeof='any' placeholder='' name='description'/>
+          </div>
+        </div>
+
+        <div className='flex gap-7 justify-end'>
+          <Button variant='outline'>Save</Button>
+          <Button>Save & Publish</Button>
+        </div>
 
       </div>
     </div>
