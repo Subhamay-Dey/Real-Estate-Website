@@ -16,24 +16,40 @@ import {
 import { Button } from '@/components/ui/button'
 
 import { Formik } from 'formik';
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
+import { useUser } from '@clerk/nextjs'
 
-const EditListing = () => {
+const EditListing = ({params}) => {
 
-  const params = usePathname();
+  const user = useUser();
+
+  const router = useRouter();
 
   useEffect(() => {
-    console.log(params.split('/')[2]);
-  },[])
+    // console.log(params.split('/')[2]);
+    user && verifyUserRecord();
+  },[user]);
 
-  const onSubmitHandler = async(formValue: any) => {
+  const verifyUserRecord = async() => {
+    const {data, error} = await supabase
+    .from('listing')
+    .select('*')
+    // .eq('createdBy', user?.primaryEmailAddress.emailAddress,)
+    .eq('id', params.id);
+
+    if(data?.length<=0) {
+      router.replace('/')
+    }
+  }
+
+  const onSubmitHandler = async(formValue) => {
     
     const { data, error } = await supabase
     .from('listing')
     .update(formValue)
-    .eq('id', params.split('/')[2])
+    .eq('id', params.id)
     .select()
         
     if(data) {

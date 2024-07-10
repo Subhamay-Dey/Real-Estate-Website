@@ -8,6 +8,7 @@ import {toast} from "sonner";
 import Loading from './loading';
 
 import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
 
 function AddNewListing() {
 
@@ -16,7 +17,9 @@ function AddNewListing() {
   const [selectedAddress, setSelectedAddress] = useState();
   const [coordinates, setCoordinates] = useState();
 
-  const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(false);
+
+  const router = useRouter();
  
   const nextHandler = async() => {
     // console.log(selectedAddress, coordinates);
@@ -35,6 +38,7 @@ function AddNewListing() {
       console.log("New Data added", data);
       toast("New Address added for listing")
       setLoader(false)
+      router.push('/edit-listing/'+data[0].id)
     } 
     if(error) {
       console.log("Error", error);
