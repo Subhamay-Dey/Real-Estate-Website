@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -16,7 +16,7 @@ import {
 import { Button } from '@/components/ui/button'
 
 import { Formik } from 'formik';
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
 import { useUser } from '@clerk/nextjs'
@@ -26,6 +26,8 @@ const EditListing = ({params}) => {
   const user = useUser();
 
   const router = useRouter();
+
+  const [listing, setListing] = useState([]);
 
   useEffect(() => {
     // console.log(params.split('/')[2]);
@@ -38,6 +40,10 @@ const EditListing = ({params}) => {
     .select('*')
     // .eq('createdBy', user?.primaryEmailAddress.emailAddress,)
     .eq('id', params.id);
+
+    if(data) {
+      setListing(data[0]);
+    }
 
     if(data?.length<=0) {
       router.replace('/')
@@ -67,6 +73,8 @@ const EditListing = ({params}) => {
         initialValues={{
           type:"",
           propertyType:"",
+          profileImg: user?.imageUrl,
+          username: user?.username,
         }}
         onSubmit={(values) => {
           console.log(values);
@@ -85,7 +93,7 @@ const EditListing = ({params}) => {
             <div className='grid grid-cols-1 md:grid-cols-2'>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-lg text-slate-400'>Rent or Sell?</h2>
-                <RadioGroup defaultValue="Sell"
+                <RadioGroup defaultValue={listing?.type}
                   onValueChange={(e) => values.type=e}
                 >
                   <div className="flex items-center space-x-2">
@@ -102,9 +110,11 @@ const EditListing = ({params}) => {
                 <h2 className='text-lg text-slate-400'>Property Type</h2>
                 <Select
                   onValueChange={(e) => values.propertyType=e} 
-                  name='propertyType'>
+                  name='propertyType'
+                  defaultValue={listing?.propertyType}
+                  >
                   <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select Property Type" />
+                    <SelectValue placeholder={listing?.propertyType ? listing?.propertyType : "Select Property Type"} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Single Family House">Single Family House</SelectItem>
@@ -119,48 +129,51 @@ const EditListing = ({params}) => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Bedroom</h2>
-                <Input type='number' placeholder='Ex.2' name='bedroom' onChange={handleChange}/>
+                <Input type='number' placeholder='Ex.2' name='bedroom' 
+                defaultValue={listing?.bedroom}
+                onChange={handleChange}/>
               </div>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Bathroom</h2>
-                <Input type='number' placeholder='Ex.2' name='bathroom' onChange={handleChange}/>
+                <Input type='number' placeholder='Ex.2' name='bathroom'
+                defaultValue={listing?.bathroom} onChange={handleChange}/>
               </div>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Built In</h2>
-                <Input type='number' placeholder='Ex.1900 Sq.ft' name='builtin' onChange={handleChange}/>
+                <Input type='number' placeholder='Ex.1900 Sq.ft' name='builtin' defaultValue={listing?.builtin} onChange={handleChange}/>
               </div>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Parking</h2>
-                <Input type='number' placeholder='Ex.2' name='parking' onChange={handleChange}/>
+                <Input type='number' placeholder='Ex.2' name='parking' defaultValue={listing?.parking} onChange={handleChange}/>
               </div>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Lot Size (Sq.ft)</h2>
-                <Input type='number' placeholder='' name='lotSize' onChange={handleChange}/>
+                <Input type='number' placeholder='' name='lotSize' defaultValue={listing?.lotSize} onChange={handleChange}/>
               </div>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Area (Sq.ft)</h2>
-                <Input type='number' placeholder='Ex.1900' name='area' onChange={handleChange}/>
+                <Input type='number' placeholder='Ex.1900' name='area' defaultValue={listing?.area} onChange={handleChange}/>
               </div>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Selling Price ($)</h2>
-                <Input type='number' placeholder='400000' name='price' onChange={handleChange}/>
+                <Input type='number' placeholder='400000' name='price' defaultValue={listing?.price} onChange={handleChange}/>
               </div>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>HOA (Per Month) ($)</h2>
-                <Input type='number' placeholder='100' name='hoa' onChange={handleChange}/>
+                <Input type='number' placeholder='100' name='hoa' defaultValue={listing?.hoa} onChange={handleChange}/>
               </div>
             </div>
 
             <div className='grid grid-cols-1 gap-10'>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Description</h2>
-                <Textarea typeof='any' placeholder='' name='description' onChange={handleChange}/>
+                <Textarea typeof='any' placeholder='' name='description' defaultValue={listing?.description} onChange={handleChange}/>
               </div>
             </div>
 
