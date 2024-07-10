@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -16,8 +16,32 @@ import {
 import { Button } from '@/components/ui/button'
 
 import { Formik } from 'formik';
+import { usePathname } from 'next/navigation'
+import { supabase } from '@/supabase/client'
+import { toast } from 'sonner'
 
 const EditListing = () => {
+
+  const params = usePathname();
+
+  useEffect(() => {
+    console.log(params.split('/')[2]);
+  },[])
+
+  const onSubmitHandler = async(formValue: any) => {
+    
+    const { data, error } = await supabase
+    .from('listing')
+    .update(formValue)
+    .eq('id', params.split('/')[2])
+    .select()
+        
+    if(data) {
+      console.log(data);
+      toast("Listing updated and Published");
+    } 
+  }
+
   return (
     <>
     <div className='px-10 md:px-36 my-10'>
@@ -30,6 +54,7 @@ const EditListing = () => {
         }}
         onSubmit={(values) => {
           console.log(values);
+          onSubmitHandler(values);
         }}
       >
         {({
@@ -86,7 +111,7 @@ const EditListing = () => {
               </div>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Built In</h2>
-                <Input type='number' placeholder='Ex.1900 Sq.ft' name='builtIn' onChange={handleChange}/>
+                <Input type='number' placeholder='Ex.1900 Sq.ft' name='builtin' onChange={handleChange}/>
               </div>
             </div>
 
@@ -108,7 +133,7 @@ const EditListing = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Selling Price ($)</h2>
-                <Input type='number' placeholder='400000' name='sellingPrice' onChange={handleChange}/>
+                <Input type='number' placeholder='400000' name='price' onChange={handleChange}/>
               </div>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>HOA (Per Month) ($)</h2>
