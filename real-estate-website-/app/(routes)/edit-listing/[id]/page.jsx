@@ -20,6 +20,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
 import { useUser } from '@clerk/nextjs'
+import FileUpload from '../_components/FileUpload'
 
 const EditListing = ({params}) => {
 
@@ -175,6 +176,11 @@ const EditListing = ({params}) => {
                 <h2 className='text-gray-500'>Description</h2>
                 <Textarea typeof='any' placeholder='' name='description' defaultValue={listing?.description} onChange={handleChange}/>
               </div>
+            </div>
+
+            <div>
+              <h2 className='font-bold text-gray-500 my-2'>Upload Property Images</h2>
+              <FileUpload/>
             </div>
 
             <div className='flex gap-7 justify-end'>
