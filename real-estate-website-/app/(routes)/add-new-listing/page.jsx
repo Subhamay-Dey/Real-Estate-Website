@@ -4,6 +4,8 @@ import GoogleAddressSearch from '@/app/_components/GoogleAddressSearch';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/supabase/client';
 import React, { useState } from 'react';
+import {toast} from "sonner";
+import Loading from './loading';
 
 import { useUser } from '@clerk/nextjs';
 
@@ -13,10 +15,12 @@ function AddNewListing() {
 
   const [selectedAddress, setSelectedAddress] = useState();
   const [coordinates, setCoordinates] = useState();
+
+  const [loader, setLoader] = useState(false)
  
   const nextHandler = async() => {
-    console.log(selectedAddress, coordinates);
-    
+    // console.log(selectedAddress, coordinates);
+    setLoader(true)
     const { data, error } = await supabase
     .from('listing')
     .insert([
@@ -25,13 +29,17 @@ function AddNewListing() {
         createdBy: user?.primaryEmailAddress.emailAddress,
       },
     ])
-    // .select()
+    .select()
         
     if(data) {
       console.log("New Data added", data);
+      toast("New Address added for listing")
+      setLoader(false)
     } 
     if(error) {
       console.log("Error", error);
+      toast("Server side error")
+      setLoader(false)
     }
 
   }
@@ -65,13 +73,12 @@ function AddNewListing() {
           setCoordinates={(value) => setCoordinates(value)}
         />
         <Button
-          disabled={!selectedAddress || !coordinates}
+          disabled={!selectedAddress || !coordinates || loader}
           onClick={nextHandler}
           style={{ width: '100%' }}
-        >Next</Button>
+        >{loader ? <Loading className='animate-spin'/> : "Next"}</Button>
       </div>
-    </div>
-
+    </div>
   )
 }
 

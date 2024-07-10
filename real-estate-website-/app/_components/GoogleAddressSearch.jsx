@@ -3,7 +3,6 @@
 import { MapPin } from 'lucide-react';
 import React from 'react'
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
-import { Option } from 'react-google-places-autocomplete/build/types';
 
 function GoogleAddressSearch({selectedAddress, setCoordinates}) {
 
