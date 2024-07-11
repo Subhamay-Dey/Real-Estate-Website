@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Button } from '@/components/ui/button'
-import { Formik } from 'formik';
+import { Formik } from 'formik'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
@@ -76,6 +76,8 @@ const EditListing = ({params}) => {
       }
       else {
         console.log('data', data);
+        const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL+fileName;
+        console.log(imageUrl);
       }
     }
   }
