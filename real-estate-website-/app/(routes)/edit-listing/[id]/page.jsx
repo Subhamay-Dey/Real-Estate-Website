@@ -18,6 +18,7 @@ import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
 import { useUser } from '@clerk/nextjs'
 import FileUpload from '../_components/FileUpload'
+import Loading from '../loading'
 
 const EditListing = ({params}) => {
 
@@ -25,7 +26,7 @@ const EditListing = ({params}) => {
   const router = useRouter();
   const [listing, setListing] = useState([]);
   const [images, setImages] = useState([]);
-  const [loading, setloading] = useState()
+  const [loading, setLoading] = useState()
 
   useEffect(() => {
     // console.log(params.split('/')[2]);
@@ -49,6 +50,8 @@ const EditListing = ({params}) => {
   }
 
   const onSubmitHandler = async(formValue) => {
+
+    setLoading(true);
     
     const { data, error } = await supabase
     .from('listing')
@@ -74,9 +77,9 @@ const EditListing = ({params}) => {
 
       if(error) {
         toast("Error while uploading images");
+        setLoading(false);
       }
       else {
-        console.log('data', data);
         const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL+fileName;
         console.log(imageUrl);
         const {data, error} = await supabase
@@ -88,7 +91,12 @@ const EditListing = ({params}) => {
           }
         ])
         .select();
+
+        if(error) {
+          setLoading(false);
+        }
       }
+      setLoading(false);
     }
   }
 
@@ -212,7 +220,9 @@ const EditListing = ({params}) => {
 
             <div className='flex gap-7 justify-end'>
               <Button variant='outline'>Save</Button>
-              <Button>Save & Publish</Button>
+              <Button disabled={loading} className=''>
+                {loading ? <Loading className="animate-spin"/> : "Save & Publish"}
+              </Button>
             </div>
 
           </div>
