@@ -25,6 +25,7 @@ const EditListing = ({params}) => {
   const router = useRouter();
   const [listing, setListing] = useState([]);
   const [images, setImages] = useState([]);
+  const [loading, setloading] = useState()
 
   useEffect(() => {
     // console.log(params.split('/')[2]);
