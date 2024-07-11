@@ -1,11 +1,9 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-
 import {
   Select,
   SelectContent,
@@ -14,7 +12,6 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Button } from '@/components/ui/button'
-
 import { Formik } from 'formik';
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/supabase/client'
@@ -25,12 +22,9 @@ import FileUpload from '../_components/FileUpload'
 const EditListing = ({params}) => {
 
   const user = useUser();
-
   const router = useRouter();
-
   const [listing, setListing] = useState([]);
-
-  const [images, setimages] = useState([]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     // console.log(params.split('/')[2]);
@@ -55,16 +49,35 @@ const EditListing = ({params}) => {
 
   const onSubmitHandler = async(formValue) => {
     
-    const { data, error } = await supabase
-    .from('listing')
-    .update(formValue)
-    .eq('id', params.id)
-    .select()
+    // const { data, error } = await supabase
+    // .from('listing')
+    // .update(formValue)
+    // .eq('id', params.id)
+    // .select()
         
-    if(data) {
-      console.log(data);
-      toast("Listing updated and Published");
-    } 
+    // if(data) {
+    //   console.log(data);
+    //   toast("Listing updated and Published");
+    // } 
+    for(const image of images) {
+      const file = image;
+      const fileName = Date.now().toString();
+      const fileExt = fileName.split('.').pop();
+
+      const {data, error} = await supabase.storage
+      .from('listingImages')
+      .upload(`${fileName}`, file, {
+        contentType: `image/${fileExt}`, 
+        upsert: false
+      });
+
+      if(error) {
+        toast("Error while uploading images");
+      }
+      else {
+        console.log('data', data);
+      }
+    }
   }
 
   return (
@@ -182,7 +195,7 @@ const EditListing = ({params}) => {
 
             <div>
               <h2 className='font-bold text-gray-500 my-2'>Upload Property Images</h2>
-              <FileUpload setImages={(value) => setimages(value)}/>
+              <FileUpload setImages={(value) => setImages(value)}/>
             </div>
 
             <div className='flex gap-7 justify-end'>
