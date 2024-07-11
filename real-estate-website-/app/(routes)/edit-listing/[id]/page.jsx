@@ -49,16 +49,16 @@ const EditListing = ({params}) => {
 
   const onSubmitHandler = async(formValue) => {
     
-    // const { data, error } = await supabase
-    // .from('listing')
-    // .update(formValue)
-    // .eq('id', params.id)
-    // .select()
+    const { data, error } = await supabase
+    .from('listing')
+    .update(formValue)
+    .eq('id', params.id)
+    .select()
         
-    // if(data) {
-    //   console.log(data);
-    //   toast("Listing updated and Published");
-    // } 
+    if(data) {
+      console.log(data);
+      toast("Listing updated and Published");
+    } 
     for(const image of images) {
       const file = image;
       const fileName = Date.now().toString();
@@ -78,6 +78,15 @@ const EditListing = ({params}) => {
         console.log('data', data);
         const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL+fileName;
         console.log(imageUrl);
+        const {data, error} = await supabase
+        .from('listingImages')
+        .insert([
+          {
+            imgUrl: imageUrl,
+            listing_id: params.id
+          }
+        ])
+        .select();
       }
     }
   }
