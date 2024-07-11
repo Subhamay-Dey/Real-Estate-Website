@@ -30,6 +30,8 @@ const EditListing = ({params}) => {
 
   const [listing, setListing] = useState([]);
 
+  const [images, setimages] = useState([]);
+
   useEffect(() => {
     // console.log(params.split('/')[2]);
     user && verifyUserRecord();
@@ -180,7 +182,7 @@ const EditListing = ({params}) => {
 
             <div>
               <h2 className='font-bold text-gray-500 my-2'>Upload Property Images</h2>
-              <FileUpload/>
+              <FileUpload setImages={(value) => setimages(value)}/>
             </div>
 
             <div className='flex gap-7 justify-end'>
