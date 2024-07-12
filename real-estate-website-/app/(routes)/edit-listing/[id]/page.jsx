@@ -4,13 +4,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue} from "@/components/ui/select"
 import { Button } from '@/components/ui/button'
 import { Formik } from 'formik'
 import { useRouter } from 'next/navigation'
@@ -29,18 +23,19 @@ const EditListing = ({params}) => {
   const [loading, setLoading] = useState()
 
   useEffect(() => {
-    // console.log(params.split('/')[2]);
+    console.log(params.id);
     user && verifyUserRecord();
   },[user]);
 
   const verifyUserRecord = async() => {
     const {data, error} = await supabase
     .from('listing')
-    .select('*')
+    .select('*, listingImages(imgUrl, listing_id)')
     // .eq('createdBy', user?.primaryEmailAddress.emailAddress,)
     .eq('id', params.id);
 
     if(data) {
+      console.log(data);
       setListing(data[0]);
     }
 
@@ -215,7 +210,9 @@ const EditListing = ({params}) => {
 
             <div>
               <h2 className='font-bold text-gray-500 my-2'>Upload Property Images</h2>
-              <FileUpload setImages={(value) => setImages(value)}/>
+              <FileUpload setImages={(value) => setImages(value)}
+                  imageList={listing.listingImages}
+              />
             </div>
 
             <div className='flex gap-7 justify-end'>
