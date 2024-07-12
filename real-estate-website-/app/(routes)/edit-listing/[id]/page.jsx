@@ -35,7 +35,6 @@ const EditListing = ({params}) => {
     .eq('id', params.id);
 
     if(data) {
-      console.log(data);
       setListing(data[0]);
     }
 
