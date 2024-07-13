@@ -56,8 +56,10 @@ const EditListing = ({params}) => {
     if(data) {
       console.log(data);
       toast("Listing updated and Published");
+      setLoading(false)
     } 
     for(const image of images) {
+      setLoading(true)
       const file = image;
       const fileName = Date.now().toString();
       const fileExt = fileName.split('.').pop();
@@ -85,6 +87,10 @@ const EditListing = ({params}) => {
           }
         ])
         .select();
+
+        if(data) {
+          setLoading(false)
+        }
 
         if(error) {
           setLoading(false);
