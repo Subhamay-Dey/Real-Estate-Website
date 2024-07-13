@@ -16,14 +16,13 @@ import Loading from '../loading'
 
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
 
-
 const EditListing = ({params}) => {
 
   const user = useUser();
   const router = useRouter();
   const [listing, setListing] = useState([]);
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
     console.log(params.id);
@@ -100,6 +99,19 @@ const EditListing = ({params}) => {
         }
       }
       setLoading(false);
+    }
+  }
+
+  const publishBtnHandler = async() => {
+    
+    const { data, error } = await supabase
+    .from('listing')
+    .update({ active: true })
+    .eq('id', params?.id)
+    .select()
+        
+    if(data) {
+      toast("Listing published successfully");
     }
   }
 
@@ -243,7 +255,7 @@ const EditListing = ({params}) => {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>Continue</AlertDialogAction>
+                    <AlertDialogAction onClick={() => publishBtnHandler()}>Continue</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
