@@ -215,7 +215,9 @@ const EditListing = ({params}) => {
             </div>
 
             <div className='flex gap-7 justify-end'>
-              <Button variant='outline'>Save</Button>
+              <Button disabled={loading} variant='outline' className=''>
+                {loading ? <Loading className="animate-spin"/> : "Save"}
+              </Button>
               <Button disabled={loading} className=''>
                 {loading ? <Loading className="animate-spin"/> : "Save & Publish"}
               </Button>
