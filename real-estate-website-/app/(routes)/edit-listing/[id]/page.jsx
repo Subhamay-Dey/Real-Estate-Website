@@ -103,7 +103,7 @@ const EditListing = ({params}) => {
   }
 
   const publishBtnHandler = async() => {
-    
+    setLoading(true)
     const { data, error } = await supabase
     .from('listing')
     .update({ active: true })
@@ -112,6 +112,7 @@ const EditListing = ({params}) => {
         
     if(data) {
       toast("Listing published successfully");
+      setLoading(false);
     }
   }
 
@@ -255,7 +256,8 @@ const EditListing = ({params}) => {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => publishBtnHandler()}>Continue</AlertDialogAction>
+                    <AlertDialogAction onClick={() => publishBtnHandler()}>
+                      {loading ? <Loading className="animate-spin"/> : "Continue"}</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
