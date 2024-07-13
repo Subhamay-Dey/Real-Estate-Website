@@ -7,7 +7,7 @@ import {Plus} from "lucide-react"
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserButton, useUser } from '@clerk/nextjs'
-
+     
 function Header() {
 
   const path = usePathname();
@@ -18,7 +18,7 @@ function Header() {
   },[])
 
   return (
-    <div className='p-6 px-10 top-0 w-full z-10 bg-white flex justify-between shadow-sm fixed '>
+    <div className='p-6 px-10 top-0 w-full z-10 bg-white flex justify-between shadow-sm fixed'>
       <div className='flex gap-12 items-center'>
         <Image src={'/next.svg'} alt='logo' width={150} height={150}/>
           <ul className='hidden md:flex gap-10'>
