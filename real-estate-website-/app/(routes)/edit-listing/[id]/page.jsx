@@ -236,10 +236,9 @@ const EditListing = ({params}) => {
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogTitle>Ready to Publish?</AlertDialogTitle>
                     <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete your account
-                      and remove your data from our servers.
+                      Do you really want to publish the listing?
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
