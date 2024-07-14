@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect } from 'react'
 import Listing from './Listing'
 import { supabase } from '@/supabase/client'
@@ -15,7 +16,7 @@ function ListingMapView({type}:any) {
       imgUrl,
       listing_id
     )`)
-    .eq('active', type)
+    .eq('active', true)
     .eq('type', type)
 
     if(data) {
