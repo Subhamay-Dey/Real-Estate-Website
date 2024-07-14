@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Listing() {
+function Listing({listing}:any) {
   return (
-    <div>Listing</div>
+    <div>
+      
+    </div>
   )
 }
 

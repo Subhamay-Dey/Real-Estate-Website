@@ -2,8 +2,11 @@
 import React, { useEffect } from 'react'
 import Listing from './Listing'
 import { supabase } from '@/supabase/client'
+import { toast } from 'sonner'
 
 function ListingMapView({type}:any) {
+
+  const [listing, setListings] = React.useState([])
 
   useEffect(() => {
     getLatestListing();
@@ -21,14 +24,17 @@ function ListingMapView({type}:any) {
 
     if(data) {
       console.log(data);
-      
+      setListings(data);
+    }
+    if(error) {
+      toast("Server Side Error")
     }
   }
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2'>
       <div>
-        <Listing/>
+        <Listing listing={listing}/>
       </div>
       <div>
         Map
