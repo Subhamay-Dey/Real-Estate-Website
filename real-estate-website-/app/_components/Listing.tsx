@@ -1,11 +1,21 @@
-import { Bath, BedDouble, MapPin, Ruler } from 'lucide-react'
+import { Bath, BedDouble, MapPin, Ruler, Search } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import GoogleAddressSearch from './GoogleAddressSearch'
+import { Button } from '@/components/ui/button'
 
 function Listing({listing}:any) {
 
   return (
     <div>
+      <div className='p-3 flex gap-6'>
+        <GoogleAddressSearch
+          selectedAddress={(val : any) => console.log(val)}
+          setCoordinates={(val : any) => console.log(val)}
+        />
+        <Button className='flex gap-2'><Search/>Search</Button>
+      </div>
+
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {listing?.length > 0 ? listing.map((item: any, index: any) => (
           <div className='p-3 hover:border hover:border-primary cursor-pointer rounded-lg'>
