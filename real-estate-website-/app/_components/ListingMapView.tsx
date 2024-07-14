@@ -21,6 +21,7 @@ function ListingMapView({type}:any) {
     )`)
     .eq('active', true)
     .eq('type', type)
+    .order('id', {ascending: false})
 
     if(data) {
       console.log(data);

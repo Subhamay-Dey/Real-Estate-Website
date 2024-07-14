@@ -8,7 +8,7 @@ function Listing({listing}:any) {
     <div>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {listing.map((item: any, index: any) => (
-          <div className='p-3 hover:border-primary'>
+          <div className='p-3 hover:border hover:border-primary cursor-pointer rounded-lg'>
             <Image src={item.listingImages[0].imgUrl}
               width={800}
               height={150}
