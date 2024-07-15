@@ -36,7 +36,7 @@ function ListingMapView({type}:any) {
   const handleSearchClick = async() => {
 
     console.log(searchedAddress);
-    
+    // const searchTerm = searchedAddress?.value?.structed_formatting?.main_text
 
     // const {data, error} = await supabase
     // .from('listing')
@@ -46,6 +46,7 @@ function ListingMapView({type}:any) {
     // )`)
     // .eq('active', true)
     // .eq('type', type)
+    // .like('address', '%'+searchTerm+'%')
     // .order('id', {ascending: false})
   }
 
@@ -54,7 +55,7 @@ function ListingMapView({type}:any) {
       <div>
         <Listing listing={listing}
           handleSearchClick={handleSearchClick}
-          searchedAddress={(val: any) => setSearchedAddress(val)}
+          searchedAddress={(v: any) => setSearchedAddress(v)}
         />
       </div>
       <div>

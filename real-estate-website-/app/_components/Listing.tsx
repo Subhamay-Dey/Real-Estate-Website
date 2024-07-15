@@ -10,8 +10,8 @@ function Listing({listing , handleSearchClick, searchedAddress}:any) {
     <div>
       <div className='p-3 flex gap-6'>
         <GoogleAddressSearch
-          selectedAddress={(val : any) => searchedAddress(val)}
-          setCoordinates={(val : any) => console.log(val)}
+          selectedAddress={(v : any) => searchedAddress(v)}
+          setCoordinates={(v : any) => console.log(v)}
         />
         <Button className='flex gap-2' onClick={handleSearchClick}>
           <Search className='w-4 h-4'/>Search
