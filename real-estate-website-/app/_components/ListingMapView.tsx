@@ -34,15 +34,19 @@ function ListingMapView({type}:any) {
   }
 
   const handleSearchClick = async() => {
-    const {data, error} = await supabase
-    .from('listing')
-    .select(`*, listingImages(
-      imgUrl,
-      listing_id
-    )`)
-    .eq('active', true)
-    .eq('type', type)
-    .order('id', {ascending: false})
+
+    console.log(searchedAddress);
+    
+
+    // const {data, error} = await supabase
+    // .from('listing')
+    // .select(`*, listingImages(
+    //   imgUrl,
+    //   listing_id
+    // )`)
+    // .eq('active', true)
+    // .eq('type', type)
+    // .order('id', {ascending: false})
   }
 
   return (
