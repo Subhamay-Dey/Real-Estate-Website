@@ -4,7 +4,7 @@ import React from 'react'
 import GoogleAddressSearch from './GoogleAddressSearch'
 import { Button } from '@/components/ui/button'
 
-function Listing({listing}:any) {
+function Listing({listing , handleSearchClick}:any) {
 
   return (
     <div>
@@ -13,7 +13,9 @@ function Listing({listing}:any) {
           selectedAddress={(val : any) => console.log(val)}
           setCoordinates={(val : any) => console.log(val)}
         />
-        <Button className='flex gap-2'><Search className='w-4 h-4'/>Search</Button>
+        <Button className='flex gap-2' onClick={handleSearchClick}>
+          <Search className='w-4 h-4'/>Search
+        </Button>
       </div>
 
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>

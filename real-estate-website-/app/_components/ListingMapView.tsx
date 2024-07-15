@@ -32,10 +32,24 @@ function ListingMapView({type}:any) {
     }
   }
 
+  const handleSearchClick = async() => {
+    const {data, error} = await supabase
+    .from('listing')
+    .select(`*, listingImages(
+      imgUrl,
+      listing_id
+    )`)
+    .eq('active', true)
+    .eq('type', type)
+    .order('id', {ascending: false})
+  }
+
   return (
     <div className='grid grid-cols-1 md:grid-cols-2'>
       <div>
-        <Listing listing={listing}/>
+        <Listing listing={listing}
+          handleSearchClick={handleSearchClick}
+        />
       </div>
       <div>
         Map
