@@ -4,10 +4,11 @@ import Listing from './Listing'
 import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
 
+
 function ListingMapView({type}:any) {
 
   const [listing, setListings] = React.useState([])
-
+  const [searchedAddress, setSearchedAddress] = React.useState();
   useEffect(() => {
     getLatestListing();
   },[])
@@ -49,6 +50,7 @@ function ListingMapView({type}:any) {
       <div>
         <Listing listing={listing}
           handleSearchClick={handleSearchClick}
+          searchedAddress={(val: any) => setSearchedAddress(val)}
         />
       </div>
       <div>
