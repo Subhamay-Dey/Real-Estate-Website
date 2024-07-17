@@ -4,7 +4,6 @@ import Listing from './Listing'
 import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
 
-
 function ListingMapView({type}:any) {
 
   const [listing, setListings] = React.useState([])
@@ -36,18 +35,22 @@ function ListingMapView({type}:any) {
   const handleSearchClick = async() => {
 
     console.log(searchedAddress);
-    // const searchTerm = searchedAddress?.value?.structed_formatting?.main_text
+    const searchTerm = searchedAddress?.value?.structured_formatting?.main_text
 
-    // const {data, error} = await supabase
-    // .from('listing')
-    // .select(`*, listingImages(
-    //   imgUrl,
-    //   listing_id
-    // )`)
-    // .eq('active', true)
-    // .eq('type', type)
-    // .like('address', '%'+searchTerm+'%')
-    // .order('id', {ascending: false})
+    const {data, error} = await supabase
+    .from('listing')
+    .select(`*, listingImages(
+      imgUrl,
+      listing_id
+    )`)
+    .eq('active', true)
+    .eq('type', type)
+    .like('address', '%'+searchTerm+'%')
+    .order('id', {ascending: false})
+    
+    if(data) {
+      setListings(data);
+    }
   }
 
   return (
