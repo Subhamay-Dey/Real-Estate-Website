@@ -6,7 +6,7 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import { Bath, BedDouble } from 'lucide-react';
+import { Bath, BedDouble, CarFront } from 'lucide-react';
 
 function FilterSection() {
   return (
@@ -46,6 +46,25 @@ function FilterSection() {
             </SelectItem>
             <SelectItem value="4">
                 <h2 className='flex gap-2'><Bath className='h-5 w-5 text-primary'/>4+</h2>
+            </SelectItem>
+        </SelectContent>
+        </Select>
+        <Select>
+        <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Parking" />
+        </SelectTrigger>
+        <SelectContent>
+        <SelectItem value="0">
+                <h2 className='flex gap-2'><CarFront className='h-5 w-5 text-primary'/>0</h2>
+            </SelectItem>
+            <SelectItem value="1">
+                <h2 className='flex gap-2'><CarFront className='h-5 w-5 text-primary'/>1+</h2>
+            </SelectItem>
+            <SelectItem value="2">
+                <h2 className='flex gap-2'><CarFront className='h-5 w-5 text-primary'/>2+</h2>
+            </SelectItem>
+            <SelectItem value="3">
+                <h2 className='flex gap-2'><CarFront className='h-5 w-5 text-primary'/>3+</h2>
             </SelectItem>
         </SelectContent>
         </Select>
