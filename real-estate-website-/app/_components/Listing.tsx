@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import GoogleAddressSearch from './GoogleAddressSearch'
 import { Button } from '@/components/ui/button'
+import FilterSection from './FilterSection'
 
 function Listing({listing , handleSearchClick, searchedAddress}:any) {
 
@@ -15,10 +16,15 @@ function Listing({listing , handleSearchClick, searchedAddress}:any) {
           selectedAddress={(v : any) => {searchedAddress(v); setAddress(v)}}
           setCoordinates={(v : any) => console.log(v)}
         />
+
         <Button className='flex gap-2' onClick={handleSearchClick}>
           <Search className='w-4 h-4'/>Search
         </Button>
       </div>
+
+    {/* -- Filter section component -- */}
+    <FilterSection/>
+
       {address && <div className='px-3'>
         <h2 className='text-lg'>Found <span className='font-bold'>{listing?.length}</span> Result in <span className='text-primary font-bold'>{address?.label}</span> </h2>
         
