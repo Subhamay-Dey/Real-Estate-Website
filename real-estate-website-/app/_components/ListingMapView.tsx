@@ -32,7 +32,7 @@ function ListingMapView({type}:any) {
     }
   }
 
-  const handleSearchClick = async() => {
+  const handleSearchClick = async(value : any) => {
 
     console.log(searchedAddress);
     const searchTerm = searchedAddress?.value?.structured_formatting?.main_text
