@@ -19,8 +19,9 @@ function Listing({listing , handleSearchClick, searchedAddress}:any) {
           <Search className='w-4 h-4'/>Search
         </Button>
       </div>
-      {address && <div>
-        Found {listing?.length} result in {address?.label}
+      {address && <div className='px-3'>
+        <h2 className='text-lg'>Found <span className='font-bold'>{listing?.length}</span> Result in <span className='text-primary font-bold'>{address?.label}</span> </h2>
+        
       </div>}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {listing?.length > 0 ? listing.map((item: any, index: any) => (
