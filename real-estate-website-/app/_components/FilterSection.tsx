@@ -68,6 +68,22 @@ function FilterSection() {
             </SelectItem>
         </SelectContent>
         </Select>
+        <Select>
+        <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Home Type" />
+        </SelectTrigger>
+        <SelectContent>
+        <SelectItem value="Single Family Home">
+                Single Family Home
+            </SelectItem>
+            <SelectItem value="Town House">
+                Town House
+            </SelectItem>
+            <SelectItem value="Condo">
+                Condo
+            </SelectItem>
+        </SelectContent>
+        </Select>
     </div>
   )
 }
