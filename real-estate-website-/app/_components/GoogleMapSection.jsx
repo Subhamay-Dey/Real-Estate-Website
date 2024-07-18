@@ -5,7 +5,8 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
     width: '100%',
-    height: '80vh'
+    height: '80vh',
+    borderRadius: 10,
   };
   
   const center = {
