@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "middleware/middleware.js", "app/_components/GoogleAddressSearch.jsx", "app/(routes)/add-new-listing/page.jsx", "app/(routes)/edit-listing/[id]/page.jsx", "app/(routes)/edit-listing/_components/FileUpload.jsx", "app/_components/ListingMapView.jsx", "app/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "middleware/middleware.js", "app/_components/GoogleAddressSearch.jsx", "app/(routes)/add-new-listing/page.jsx", "app/(routes)/edit-listing/[id]/page.jsx", "app/(routes)/edit-listing/_components/FileUpload.jsx", "app/_components/ListingMapView.jsx", "app/page.jsx", "app/_components/GoogleMapSection.jsx"],
   "exclude": ["node_modules"]
 }

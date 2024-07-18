@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import Listing from './Listing'
 import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
+import GoogleMapSection from './GoogleMapSection'
 
 function ListingMapView({type}:any) {
 
@@ -80,7 +81,7 @@ function ListingMapView({type}:any) {
         />
       </div>
       <div>
-        Map
+        <GoogleMapSection/>
       </div>
     </div>
   )
