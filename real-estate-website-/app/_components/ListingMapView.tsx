@@ -80,7 +80,7 @@ function ListingMapView({type}:any) {
           setHomeType = {setHomeType}
         />
       </div>
-      <div>
+      <div className='fixed right-10 h-full md:w-[350px] lg:w-[450px] xl:w-[650px]'>
         <GoogleMapSection/>
       </div>
     </div>

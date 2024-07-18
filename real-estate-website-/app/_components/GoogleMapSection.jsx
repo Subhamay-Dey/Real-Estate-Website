@@ -16,10 +16,12 @@ const containerStyle = {
 
 function GoogleMapSection() {
 
-  const { isLoaded, loadError } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: 'YOUR_API_KEY',
-  });
+  // const { isLoaded, loadError } = useJsApiLoader({
+  //   id: 'google-map-script',
+  //   googleMapsApiKey: 'YOUR_API_KEY',
+  // });
+
+  
 
   const [map, setMap] = useState(null);
 
