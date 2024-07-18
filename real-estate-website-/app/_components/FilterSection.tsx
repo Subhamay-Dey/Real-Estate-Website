@@ -8,10 +8,10 @@ import {
   } from "@/components/ui/select"
 import { Bath, BedDouble, CarFront } from 'lucide-react';
 
-function FilterSection() {
+function FilterSection({setBedCount, setBathCount, setParkingCount, setHomeType}:any) {
   return (
     <div className='px-3 py-4 grid grid-cols-2 md:flex gap-2'>
-        <Select>
+        <Select onValueChange={setBedCount}>
         <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Bed" />
         </SelectTrigger>
@@ -30,7 +30,7 @@ function FilterSection() {
             </SelectItem>
         </SelectContent>
         </Select>
-        <Select>
+        <Select onValueChange={setBathCount}>
         <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Bath" />
         </SelectTrigger>
@@ -49,7 +49,7 @@ function FilterSection() {
             </SelectItem>
         </SelectContent>
         </Select>
-        <Select>
+        <Select onValueChange={setParkingCount}>
         <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Parking" />
         </SelectTrigger>
@@ -68,7 +68,7 @@ function FilterSection() {
             </SelectItem>
         </SelectContent>
         </Select>
-        <Select>
+        <Select onValueChange={setHomeType}>
         <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Home Type" />
         </SelectTrigger>

@@ -8,6 +8,11 @@ function ListingMapView({type}:any) {
 
   const [listing, setListings] = React.useState([])
   const [searchedAddress, setSearchedAddress] = React.useState();
+  const [bedCount, setBedCount] = React.useState(0);
+  const [bathCount, setBathCount] = React.useState(0);
+  const [parkingCount, setParkingCount] = React.useState(0);
+  const [homeType, setHomeType] = React.useState();
+
   useEffect(() => {
     getLatestListing();
   },[])
@@ -37,7 +42,7 @@ function ListingMapView({type}:any) {
     console.log(searchedAddress);
     const searchTerm = searchedAddress?.value?.structured_formatting?.main_text
 
-    const {data, error} = await supabase
+    let query = supabase
     .from('listing')
     .select(`*, listingImages(
       imgUrl,
@@ -45,8 +50,17 @@ function ListingMapView({type}:any) {
     )`)
     .eq('active', true)
     .eq('type', type)
+    .gte('bedroom', bedCount)
+    .gte('bathroom', bathCount)
+    .gte('parking', parkingCount)
     .like('address', '%'+searchTerm+'%')
     .order('id', {ascending: false})
+
+    if(homeType) {
+      query = query.eq('propertyType', homeType)
+    }
+
+    const {data, error} = await query
     
     if(data) {
       setListings(data);
@@ -59,6 +73,10 @@ function ListingMapView({type}:any) {
         <Listing listing={listing}
           handleSearchClick={handleSearchClick}
           searchedAddress={(v: any) => setSearchedAddress(v)}
+          setBedCount = {setBedCount}
+          setBathCount = {setBathCount}
+          setParkingCount = {setParkingCount}
+          setHomeType = {setHomeType}
         />
       </div>
       <div>

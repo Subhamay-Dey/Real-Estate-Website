@@ -5,7 +5,7 @@ import GoogleAddressSearch from './GoogleAddressSearch'
 import { Button } from '@/components/ui/button'
 import FilterSection from './FilterSection'
 
-function Listing({listing , handleSearchClick, searchedAddress}:any) {
+function Listing({listing , handleSearchClick, searchedAddress, setBedCount, setBathCount, setParkingCount, setHomeType}:any) {
 
   const [address, setAddress] = useState();
 
@@ -23,7 +23,12 @@ function Listing({listing , handleSearchClick, searchedAddress}:any) {
       </div>
 
     {/* -- Filter section component -- */}
-    <FilterSection/>
+    <FilterSection
+      setBedCount = {setBedCount}
+      setBathCount = {setBathCount}
+      setParkingCount = {setParkingCount}
+      setHomeType = {setHomeType}
+    />
 
       {address && <div className='px-3'>
         <h2 className='text-lg'>Found <span className='font-bold'>{listing?.length}</span> Result in <span className='text-primary font-bold'>{address?.label}</span> </h2>
