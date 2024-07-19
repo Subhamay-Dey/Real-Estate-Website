@@ -31,7 +31,7 @@ function ListingMapView({type}:any) {
     .order('id', {ascending: false})
 
     if(data) {
-      console.log(data);
+      // console.log(data);
       setListings(data);
     }
     if(error) {
