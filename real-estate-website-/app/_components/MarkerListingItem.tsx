@@ -1,12 +1,13 @@
-import { Bath, BedDouble, MapPin, Ruler } from 'lucide-react'
+import { Bath, BedDouble, MapPin, Ruler, X } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-function MarkerListingItem({item}:any) {
+function MarkerListingItem({item, closeHandler}:any) {
 
   return (
     <div>
       <div className=' cursor-pointer rounded-lg w-[180px]'>
+          <X onClick={() => closeHandler()}/>
             <Image src={item.listingImages[0].imgUrl}
               width={800}
               height={150}

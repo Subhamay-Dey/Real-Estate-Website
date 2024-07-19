@@ -5,7 +5,7 @@ import MarkerListingItem from './MarkerListingItem';
 function MarkerItem({item}: any) {
 
   const scaledSize = new google.maps.Size(60, 60);
-  const [selectedListing, setSelectedListing] = useState();
+  const [selectedListing, setSelectedListing] = useState(null);
 
   return (
     <div>
@@ -22,7 +22,9 @@ function MarkerItem({item}: any) {
           mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
         >
           <div>
-            <MarkerListingItem item={selectedListing}/>
+            <MarkerListingItem 
+            closeHandler={() => setSelectedListing(null)}
+            item={selectedListing}/>
           </div>
 
         </OverlayView>}
