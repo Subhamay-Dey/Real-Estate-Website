@@ -2,6 +2,7 @@
 
 import React, {useEffect, useState} from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import MarkerItem from './MarkerItem';
 
 const containerStyle = {
     width: '100%',
@@ -9,12 +10,12 @@ const containerStyle = {
     borderRadius: 10,
   };
 
-function GoogleMapSection({coordinates}) {
+function GoogleMapSection({coordinates, listing}) {
 
-  const { isLoaded, loadError } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACE_API_KEY,
-  });
+  // const { isLoaded, loadError } = useJsApiLoader({
+  //   id: 'google-map-script',
+  //   googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACE_API_KEY,
+  // });
 
   const [center, setCenter] = useState({
     lat: -3.745,
@@ -40,23 +41,30 @@ coordinates && setCenter(coordinates)
     setMap(null);
   }, []);
 
-  if (loadError) {
-    return <div>Error loading Google Maps API</div>;
-  }
+  // if (loadError) {
+  //   return <div>Error loading Google Maps API</div>;
+  // }
 
-  return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-      onLoad={() => console.log()}
-      onUnmount={onUnmount}
-    >
-      { /* Child components, such as markers, info windows, etc. */ }
-      <></>
-    </GoogleMap>
-  ) : (
-    <div>Loading...</div>
+  return (
+    <div>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={() => console.log()}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        {
+          listing.map((item, index) => (
+            <MarkerItem
+              key={index}
+              item={item}
+            />
+          ))
+        }
+      </GoogleMap>
+    </div>
   );
 }
 
