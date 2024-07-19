@@ -5,7 +5,7 @@ import GoogleAddressSearch from './GoogleAddressSearch'
 import { Button } from '@/components/ui/button'
 import FilterSection from './FilterSection'
 
-function Listing({listing , handleSearchClick, searchedAddress, setBedCount, setBathCount, setParkingCount, setHomeType}:any) {
+function Listing({listing , handleSearchClick, searchedAddress, setBedCount, setBathCount, setParkingCount, setHomeType, setCoordinates}:any) {
 
   const [address, setAddress] = useState();
 
@@ -14,7 +14,7 @@ function Listing({listing , handleSearchClick, searchedAddress, setBedCount, set
       <div className='p-3 flex gap-6'>
         <GoogleAddressSearch
           selectedAddress={(v : any) => {searchedAddress(v); setAddress(v)}}
-          setCoordinates={(v : any) => console.log(v)}
+          setCoordinates={setCoordinates}
         />
 
         <Button className='flex gap-2' onClick={handleSearchClick}>

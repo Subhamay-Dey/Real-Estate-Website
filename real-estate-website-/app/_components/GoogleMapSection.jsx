@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -8,22 +8,24 @@ const containerStyle = {
     height: '80vh',
     borderRadius: 10,
   };
-  
-  const center = {
+
+function GoogleMapSection({coordinates}) {
+
+  const { isLoaded, loadError } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACE_API_KEY,
+  });
+
+  const [center, setCenter] = useState({
     lat: -3.745,
     lng: -38.523
-  };
-
-function GoogleMapSection() {
-
-  // const { isLoaded, loadError } = useJsApiLoader({
-  //   id: 'google-map-script',
-  //   googleMapsApiKey: 'YOUR_API_KEY',
-  // });
-
-  
+  })
 
   const [map, setMap] = useState(null);
+
+  useEffect(() => {
+coordinates && setCenter(coordinates)
+  },[coordinates])
 
   const onLoad = React.useCallback(function callback(map) {
     // This ensures google.maps is available before using it
@@ -46,8 +48,8 @@ function GoogleMapSection() {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={10}
-      onLoad={onLoad}
+      zoom={12}
+      onLoad={() => console.log()}
       onUnmount={onUnmount}
     >
       { /* Child components, such as markers, info windows, etc. */ }
