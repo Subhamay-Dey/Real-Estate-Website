@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import { Bath, BedDouble, MapPin, Ruler, X } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
@@ -6,12 +7,12 @@ function MarkerListingItem({item, closeHandler}:any) {
 
   return (
     <div>
-      <div className=' cursor-pointer rounded-lg w-[180px]'>
+      <div className=' cursor-pointer rounded-lg w-[220px]'>
           <X onClick={() => closeHandler()}/>
             <Image src={item.listingImages[0].imgUrl}
               width={800}
               height={150}
-              className='rounded-lg w-[180px] object-cover h-[120px]'
+              className='rounded-lg w-[220px] object-cover h-[120px]'
               alt='listingImage'
             />
             <div className='flex mt-2 flex-col gap-2 p-2 bg-white'>
@@ -29,11 +30,12 @@ function MarkerListingItem({item, closeHandler}:any) {
                     <Bath className='h-4 w-4'/>
                     {item?.bathroom}
                   </h2>
-                  {/* <h2 className='flex gap-2 text-sm bg-slate-200 rounded-md p-2 w-full text-gray-500 justify-center items-center'>
+                  <h2 className='flex gap-2 text-sm bg-slate-200 rounded-md p-2 w-full text-gray-500 justify-center items-center'>
                     <Ruler className='h-4 w-4'/>
                     {item?.area}
-                  </h2> */}
+                  </h2>
               </div>
+              <Button size="sm">View Detail</Button>
             </div>
       </div>
     </div>
