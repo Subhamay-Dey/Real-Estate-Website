@@ -4,6 +4,7 @@ import { supabase } from '@/supabase/client'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 import Slider from '../_components/Slider';
+import Details from '../_components/Details';
 
 function ViewListing({params}:any) {
 
@@ -30,8 +31,9 @@ function ViewListing({params}:any) {
   }
 
   return (
-    <div className='px-4 md:px-32 lg:px-56 my-3'>
+    <div className='px-4 md:px-32 lg:px-56 py-5'>
       <Slider imageList = {listingDetail?.listingImages}/>
+      <Details listingDetail={listingDetail}/>
     </div>
   )
 }
