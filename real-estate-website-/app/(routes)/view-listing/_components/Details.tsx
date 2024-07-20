@@ -1,3 +1,4 @@
+import GoogleMapSection from '@/app/_components/GoogleMapSection'
 import { Button } from '@/components/ui/button'
 import { Bath, BedDouble, CarFront, Drill, Home, LandPlot, MapPin, Share } from 'lucide-react'
 import React from 'react'
@@ -48,6 +49,16 @@ function Details({listingDetail}:any) {
         <div className='mt-4'>
             <h2 className='font-bold text-2xl'>What's Special</h2>
             <p className='text-gray-600'>{listingDetail?.description}</p>
+        </div>
+        <div>
+            <h2 className='font-bold text-2xl'>Find On Map</h2>
+            <GoogleMapSection
+                coordinates={listingDetail.coordinates}
+                listing={[listingDetail]}
+            />
+        </div>
+        <div>
+
         </div>
     </div>
   )
