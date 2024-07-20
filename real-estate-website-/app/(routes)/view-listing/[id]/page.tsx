@@ -1,7 +1,10 @@
 import { supabase } from '@/supabase/client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner';
 
 function ViewListing({params}:any) {
+
+  const [listingDetail, setListingDetail] = useState();
 
   useEffect(() => {
     GetListingDetail();
@@ -12,12 +15,14 @@ function ViewListing({params}:any) {
     .from('listing')
     .select('*, listingImages(imgUrl, listing_id)')
     .eq('id', params.id)
+    .eq('active', true)
 
     if(data) {
       console.log(data);
+      setListingDetail(data);
     }
     else{
-      console.log(error.message);
+      toast(error.message);
     }
   }
 
