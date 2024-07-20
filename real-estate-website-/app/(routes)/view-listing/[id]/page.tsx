@@ -1,6 +1,9 @@
+"use client"
+
 import { supabase } from '@/supabase/client'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
+import Slider from '../_components/Slider';
 
 function ViewListing({params}:any) {
 
@@ -19,7 +22,7 @@ function ViewListing({params}:any) {
 
     if(data) {
       console.log(data);
-      setListingDetail(data);
+      setListingDetail(data[0]);
     }
     else{
       toast(error.message);
@@ -27,8 +30,8 @@ function ViewListing({params}:any) {
   }
 
   return (
-    <div>
-
+    <div className='px-4 md:px-32 lg:px-56 my-3'>
+      <Slider imageList = {listingDetail?.listingImages}/>
     </div>
   )
 }
