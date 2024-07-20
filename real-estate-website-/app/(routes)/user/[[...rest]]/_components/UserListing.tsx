@@ -1,7 +1,9 @@
+import { Button } from '@/components/ui/button';
 import { supabase } from '@/supabase/client'
 import { useUser } from '@clerk/nextjs'
-import { Bath, BedDouble, MapPin, Ruler } from 'lucide-react';
+import { Bath, BedDouble, MapPin, Ruler, Trash, Trash2 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
 function UserListing() {
@@ -32,8 +34,8 @@ function UserListing() {
         <div className='grid grid-cols-1 md:grid-cols-2'>
             {
             listing && listing.map((item: any, index: any)=> (
-            <div className='p-3 hover:border hover:border-primary cursor-pointer rounded-lg'>
-                <h2 className='bg-primary text-white w-[90px] flex justify-center items-center rounded-t text-md'>{item.active ? "Published" : "Draft"}</h2>
+            <div className='p-3  cursor-pointer rounded-lg'>
+                <h2 className='bg-primary m-1 text-white w-[90px] flex justify-center items-center rounded-t text-md'>{item.active ? "Published" : "Draft"}</h2>
               <Image src={item?.listingImages[0]?.imgUrl}
                 width={800}
                 height={150}
@@ -60,6 +62,17 @@ function UserListing() {
                       <Ruler className='h-4 w-4'/>
                       {item?.area}
                     </h2>
+                </div>
+                <div className='flex gap-2 justify-between'>
+                    <Link href={"/view-listing/"+item.id}>
+                        <Button size="sm" className='w-full' >View</Button>
+                    </Link>
+                    <Link href={"/edit-listing/"+item.id}>
+                        <Button size="sm" variant="outline" className='w-[150px]'>Edit</Button>
+                    </Link>
+                    <Button size="sm" variant="destructive">
+                        <Trash2/>
+                    </Button>
                 </div>
               </div>
             </div>
