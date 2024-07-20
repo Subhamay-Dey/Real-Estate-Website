@@ -2,6 +2,7 @@ import GoogleMapSection from '@/app/_components/GoogleMapSection'
 import { Button } from '@/components/ui/button'
 import { Bath, BedDouble, CarFront, Drill, Home, LandPlot, MapPin, Share } from 'lucide-react'
 import React from 'react'
+import AgentDetail from './AgentDetail'
 
 function Details({listingDetail}:any) {
 
@@ -58,7 +59,8 @@ function Details({listingDetail}:any) {
             />
         </div>
         <div>
-
+        <h2 className='font-bold text-2xl'>Contact Agent</h2>
+            <AgentDetail listingDetail={listingDetail}/>
         </div>
     </div>
   )

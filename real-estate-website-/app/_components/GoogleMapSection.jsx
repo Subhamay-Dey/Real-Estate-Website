@@ -51,8 +51,9 @@ coordinates && setCenter(coordinates)
         mapContainerStyle={containerStyle}
         center={center}
         zoom={10}
-        onLoad={() => console.log()}
+        onLoad={onLoad}
         onUnmount={onUnmount}
+        gestureHandling="greedy"
       >
         { /* Child components, such as markers, info windows, etc. */ }
         {
