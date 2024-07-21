@@ -5,6 +5,17 @@ import { Bath, BedDouble, MapPin, Ruler, Trash, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 function UserListing() {
 
@@ -33,8 +44,8 @@ function UserListing() {
         <h2 className='font-bold text-2xl'>Manage your listing</h2>
         <div className='grid grid-cols-1 md:grid-cols-2'>
             {
-            listing && listing.map((item: any, index: any)=> (
-            <div className='p-3  cursor-pointer rounded-lg'>
+            listing && listing.map((item: any, index : number)=> (
+            <div key={index} className='p-3  cursor-pointer rounded-lg'>
                 <h2 className='bg-primary m-1 text-white w-[90px] flex justify-center items-center rounded-t text-md'>{item.active ? "Published" : "Draft"}</h2>
               <Image src={item?.listingImages[0]?.imgUrl}
                 width={800}
@@ -70,9 +81,27 @@ function UserListing() {
                     <Link href={"/edit-listing/"+item.id}>
                         <Button size="sm" variant="outline" className='w-[150px]'>Edit</Button>
                     </Link>
-                    <Button size="sm" variant="destructive">
-                        <Trash2/>
-                    </Button>
+                    
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button type='button' size="sm" variant="destructive">
+                          <Trash2/>
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Ready to delete?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Do you really want to delete this listing.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction>Continue</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+
                 </div>
               </div>
             </div>

@@ -67,22 +67,6 @@ function AddNewListing() {
 
     </div>
     </div>
-
-    // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'start', minHeight: '100vh', width: '100%', paddingTop: '5rem' }}>
-    //   <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px', width: '100%', maxWidth: '600px' }}>
-    //     <h1 style={{ fontWeight: 'bold', textAlign: 'center', fontSize: '2rem' }}>Add New Listings</h1>
-    //     <h2 style={{ color: 'gray', textAlign: 'center' }}>Enter Address which you want to list</h2>
-    //     <GoogleAddressSearch 
-    //       selectedAddress={(value) => setSelectedAddress(value)}
-    //       setCoordinates={(value) => setCoordinates(value)}
-    //     />
-    //     <Button
-    //       disabled={!selectedAddress || !coordinates || loader}
-    //       onClick={nextHandler}
-    //       style={{ width: '100%' }}
-    //     >{loader ? <Loading className='animate-spin'/> : "Next"}</Button>
-    //   </div>
-    // </div>
   )
 }
 

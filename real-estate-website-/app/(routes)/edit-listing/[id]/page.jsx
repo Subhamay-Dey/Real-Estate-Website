@@ -244,8 +244,8 @@ const EditListing = ({params}) => {
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button type='button' disabled={loading} className=''>
-                {loading ? <Loading className="animate-spin"/> : "Save & Publish"}
-              </Button>
+                    {loading ? <Loading className="animate-spin"/> : "Save & Publish"}
+                  </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
