@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { SignOutButton, UserButton, useUser } from '@clerk/nextjs'
 import {DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuLabel,DropdownMenuSeparator,DropdownMenuTrigger} from "@/components/ui/dropdown-menu"
+import Logout from './Logout'
 
 function Header() {
 
@@ -48,7 +49,9 @@ function Header() {
             <DropdownMenuItem>
               <Link href={"/user#/my-listing"}>My Listing</Link> 
             </DropdownMenuItem>
-            <DropdownMenuItem><SignOutButton>Logout</SignOutButton></DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Logout/>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
            : 
