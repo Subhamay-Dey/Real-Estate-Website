@@ -18,8 +18,8 @@ function GoogleMapSection({coordinates, listing}) {
   // });
 
   const [center, setCenter] = useState({
-    lat: -3.745,
-    lng: -38.523
+    lat: 40.730610,
+    lng:  -73.935242
   })
 
   const [map, setMap] = useState(null);
@@ -50,10 +50,10 @@ coordinates && setCenter(coordinates)
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={12}
-        onLoad={onLoad}
+        zoom={10}
+        // onLoad={onLoad}
         onUnmount={onUnmount}
-        // gestureHandling="greedy"
+        gestureHandling="greedy"
       >
         { /* Child components, such as markers, info windows, etc. */ }
         {
