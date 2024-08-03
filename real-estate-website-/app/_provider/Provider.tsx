@@ -12,7 +12,7 @@ function Provider({children}:any) {
         libraries={['places']}
       >
         <Header/>
-        <div className='mt-32'>{children}</div>
+        <div className='mt-20'>{children}</div>
         </LoadScript>
         </div>
   )
