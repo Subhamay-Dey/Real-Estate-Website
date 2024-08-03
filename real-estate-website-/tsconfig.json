@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "middleware/middleware.js", "app/_components/GoogleAddressSearch.jsx", "app/(routes)/add-new-listing/page.jsx", "app/(routes)/edit-listing/[id]/page.jsx", "app/(routes)/edit-listing/_components/FileUpload.jsx", "app/_components/ListingMapView.jsx", "app/page.jsx", "app/_components/GoogleMapSection.jsx", "app/(routes)/user/[[...rest]]/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "middleware/middleware.js", "app/_components/GoogleAddressSearch.jsx", "app/(routes)/add-new-listing/page.jsx", "app/(routes)/edit-listing/[id]/page.jsx", "app/(routes)/edit-listing/_components/FileUpload.jsx", "app/_components/ListingMapView.jsx", "app/page.jsx", "app/_components/GoogleMapSection.jsx", "app/(routes)/user/[[...rest]]/page.tsx", "app/_components/MarkerItem.jsx", "app/_components/Listing.jsx", "app/(routes)/user/[[...rest]]/_components/UserListing.jsx", "app/(routes)/view-listing/[id]/page.jsx"],
   "exclude": ["node_modules"]
 }

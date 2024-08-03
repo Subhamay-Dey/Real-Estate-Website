@@ -5,7 +5,7 @@ import { supabase } from '@/supabase/client'
 import { toast } from 'sonner'
 import GoogleMapSection from './GoogleMapSection'
 
-function ListingMapView({type}:any) {
+function ListingMapView({type}) {
 
   const [listing, setListings] = React.useState([])
   const [searchedAddress, setSearchedAddress] = React.useState();
@@ -39,7 +39,7 @@ function ListingMapView({type}:any) {
     }
   }
 
-  const handleSearchClick = async(value : any) => {
+  const handleSearchClick = async() => {
 
     console.log(searchedAddress);
     const searchTerm = searchedAddress?.value?.structured_formatting?.main_text
@@ -74,7 +74,7 @@ function ListingMapView({type}:any) {
       <div>
         <Listing listing={listing}
           handleSearchClick={handleSearchClick}
-          searchedAddress={(v: any) => setSearchedAddress(v)}
+          searchedAddress={(v) => setSearchedAddress(v)}
           setBedCount = {setBedCount}
           setBathCount = {setBathCount}
           setParkingCount = {setParkingCount}

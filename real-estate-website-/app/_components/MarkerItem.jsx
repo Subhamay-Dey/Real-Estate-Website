@@ -2,7 +2,7 @@ import { MarkerF, OverlayView } from '@react-google-maps/api'
 import React, { useState } from 'react'
 import MarkerListingItem from './MarkerListingItem';
 
-function MarkerItem({item}: any) {
+function MarkerItem({item}) {
 
   const scaledSize = new google.maps.Size(60, 60);
   const [selectedListing, setSelectedListing] = useState(null);

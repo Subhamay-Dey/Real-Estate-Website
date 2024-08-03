@@ -47,19 +47,19 @@ function Details({listingDetail}:any) {
                 </h2>
             </div>
         </div>
-        <div className='mt-4'>
+        <div className='my-10'>
             <h2 className='font-bold text-2xl'>What's Special</h2>
             <p className='text-gray-600'>{listingDetail?.description}</p>
         </div>
         <div>
-            <h2 className='font-bold text-2xl'>Find On Map</h2>
+            <h2 className='font-bold my-2 text-2xl'>Find On Map</h2>
             <GoogleMapSection
                 coordinates={listingDetail.coordinates}
                 listing={[listingDetail]}
             />
         </div>
         <div>
-        <h2 className='font-bold text-2xl'>Contact Agent</h2>
+        <h2 className='font-bold text-2xl mt-10 my-2'>Contact Agent</h2>
             <AgentDetail listingDetail={listingDetail}/>
         </div>
     </div>

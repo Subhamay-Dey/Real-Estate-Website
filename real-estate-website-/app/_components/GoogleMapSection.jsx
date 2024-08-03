@@ -50,10 +50,10 @@ coordinates && setCenter(coordinates)
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={12}
         onLoad={onLoad}
         onUnmount={onUnmount}
-        gestureHandling="greedy"
+        // gestureHandling="greedy"
       >
         { /* Child components, such as markers, info windows, etc. */ }
         {

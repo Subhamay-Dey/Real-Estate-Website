@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 function Slider({imageList}: any) {
   return (
-    <div className='mt-5 flex justify-center'>
+    <div className=' flex justify-center'>
       {imageList ? 
         <Carousel>
         <CarouselContent>
@@ -21,7 +21,7 @@ function Slider({imageList}: any) {
                 src={item.imgUrl} width={800}
                 height={300}
                 alt='image'
-                className='rounded-xl object-cover ml-[300px]'
+                className='rounded-xl object-cover h-[450px] w-[900px] ml-[300px]'
               />
             </CarouselItem>
           ))}

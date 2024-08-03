@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import Slider from '../_components/Slider';
 import Details from '../_components/Details';
 
-function ViewListing({params}:any) {
+function ViewListing({params}) {
 
   const [listingDetail, setListingDetail] = useState();
 
@@ -31,7 +31,7 @@ function ViewListing({params}:any) {
   }
 
   return (
-    <div className='px-4 md:px-32 lg:px-56 py-5'>
+    <div className='px-4 md:px-32 lg:px-56 py-5 '>
       <Slider imageList = {listingDetail?.listingImages}/>
       <Details listingDetail={listingDetail}/>
     </div>
