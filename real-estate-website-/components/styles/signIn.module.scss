@@ -1,0 +1,16 @@
+/* styles.css */
+@keyframes slideDown {
+    from {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .slide_down {
+    animation: slideDown 1s ease-out forwards;
+  }
+  
