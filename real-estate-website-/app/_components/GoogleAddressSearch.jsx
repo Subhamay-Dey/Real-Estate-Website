@@ -1,10 +1,29 @@
 "use client"
 
 import { MapPin } from 'lucide-react';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
 
 function GoogleAddressSearch({selectedAddress, setCoordinates}) {
+
+  const [placeholder, setPlaceholder] = useState('Search Property Address');
+
+  useEffect(() => {
+    const updatePlaceholder = () => {
+      if (window.innerWidth <= 1023) {
+        setPlaceholder('Search');
+      } 
+      else {
+        setPlaceholder('Search Property Address');
+      }
+    };
+
+    updatePlaceholder();
+
+    window.addEventListener('resize', updatePlaceholder);
+
+    return () => window.removeEventListener('resize', updatePlaceholder);
+  }, []);
 
   return (
     <div className='w-full flex items-center'>
@@ -12,7 +31,7 @@ function GoogleAddressSearch({selectedAddress, setCoordinates}) {
         <GooglePlacesAutocomplete
             apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACE_API_KEY}
             selectProps={{
-                placeholder:'Search Property Address',
+                placeholder:placeholder,
                 isClearable:true,
                 className:'w-full',
                 onChange:(place) => {

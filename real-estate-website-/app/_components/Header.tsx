@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {Plus} from "lucide-react"
 import Link from 'next/link'
@@ -14,6 +14,28 @@ function Header() {
 
   const path = usePathname();
   const {user, isSignedIn} = useUser();
+
+  const [postAd, setPostAd] = useState('Search Property Address');
+
+  useEffect(() => {
+    const updatePlaceholder = () => {
+      if (window.innerWidth <= 767) {
+        setPostAd('Post Ad');
+      }
+      if (window.innerWidth <= 430) {
+        setPostAd('Post');
+      }      
+      else {
+        setPostAd('Post your Ad');
+      }
+    };
+
+    updatePlaceholder();
+
+    window.addEventListener('resize', updatePlaceholder);
+
+    return () => window.removeEventListener('resize', updatePlaceholder);
+  }, []);
 
   useEffect(()=> {
     console.log(path);
@@ -31,7 +53,7 @@ function Header() {
       </div>
       <div className='flex gap-2'>
         <Link href={'/add-new-listing'}>
-          <Button className='flex gap-2'><Plus className='h-5'/> Post your Ad</Button>
+          <Button className='flex gap-2'><Plus className='h-5'/> {postAd}</Button>
         </Link>
         {isSignedIn ? 
         <DropdownMenu>
