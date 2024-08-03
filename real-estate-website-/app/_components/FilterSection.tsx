@@ -12,7 +12,7 @@ function FilterSection({setBedCount, setBathCount, setParkingCount, setHomeType}
   return (
     <div className='px-3 py-4 grid grid-cols-2 md:flex gap-2'>
         <Select onValueChange={setBedCount}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="md:w-[180px] w-[120px] lg:w-[150px]">
             <SelectValue placeholder="Bed" />
         </SelectTrigger>
         <SelectContent>
@@ -31,7 +31,7 @@ function FilterSection({setBedCount, setBathCount, setParkingCount, setHomeType}
         </SelectContent>
         </Select>
         <Select onValueChange={setBathCount}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="md:w-[180px] w-[120px] lg:w-[150px]">
             <SelectValue placeholder="Bath" />
         </SelectTrigger>
         <SelectContent>
@@ -50,7 +50,7 @@ function FilterSection({setBedCount, setBathCount, setParkingCount, setHomeType}
         </SelectContent>
         </Select>
         <Select onValueChange={setParkingCount}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="md:w-[180px] w-[120px] lg:w-[150px]">
             <SelectValue placeholder="Parking" />
         </SelectTrigger>
         <SelectContent>
@@ -69,7 +69,7 @@ function FilterSection({setBedCount, setBathCount, setParkingCount, setHomeType}
         </SelectContent>
         </Select>
         <Select onValueChange={(value) => value == "All" ? setHomeType(null) : setHomeType(value)}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="md:w-[180px] w-[120px] lg:w-[150px]">
             <SelectValue placeholder="Home Type" />
         </SelectTrigger>
         <SelectContent>

@@ -82,7 +82,7 @@ function ListingMapView({type}) {
           setCoordinates = {setCoordinates}
         />
       </div>
-      <div className='fixed right-0 h-full md:w-[30%] lg:w-[50%] xl:w-[50%]'>
+      <div className='fixed right-0 h-full md:w-[50%] lg:w-[50%] xl:w-[50%]'>
         <GoogleMapSection
           listing = {listing}
           coordinates = {coordinates}

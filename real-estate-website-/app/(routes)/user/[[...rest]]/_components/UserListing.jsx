@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
+import { toast } from 'sonner';
 
 function UserListing() {
 
@@ -13,20 +14,54 @@ function UserListing() {
 
     const [listing, setListing] = useState();
 
+    const [loading, setLoading] = useState(true);
+
+    const [deleteId, setDeleteId] = useState(null);
+
     useEffect(() => {
         user && GetUserListing();
     },[user])
 
-    const GetUserListing = async() => {
-
-        const {data, error} = await supabase
-        .from('listing')
-        .select('*, listingImages(imgUrl, listing_id)')
-        .eq('createdBy',user?.primaryEmailAddress?.emailAddress)
-
+    const GetUserListing = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('listing')
+          .select('*, listingImages(imgUrl, listing_id)')
+          .eq('createdBy', user?.primaryEmailAddress?.emailAddress);
+  
+        if (error) throw error;
+  
         setListing(data);
-        console.log(data);
-    }
+      } catch (error) {
+        toast(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const deleteListingsAndImages = async (id) => {
+      const { error: errorImages } = await supabase
+        .from('listingImages')
+        .delete()
+        .eq('listing_id', id);
+  
+      if (errorImages) {
+        console.error('Error deleting images:', errorImages);
+        return;
+      }
+  
+      const { error: errorListing } = await supabase
+        .from('listing')
+        .delete()
+        .eq('id', id);
+  
+      if (errorListing) {
+        console.error('Error deleting listing:', errorListing);
+        return;
+      }
+  
+      setListing(listing.filter(item => item.id !== id));
+    };
 
   return (
     <div>
@@ -72,7 +107,7 @@ function UserListing() {
                     
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button type='button' size="sm" variant="destructive">
+                        <Button type='button' size="sm" variant="destructive" onClick={() => setDeleteId(item.id)}>
                           <Trash2/>
                         </Button>
                       </AlertDialogTrigger>
@@ -85,7 +120,7 @@ function UserListing() {
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction>Continue</AlertDialogAction>
+                          <AlertDialogAction onClick={() => deleteListingsAndImages(deleteId)}>Continue</AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
