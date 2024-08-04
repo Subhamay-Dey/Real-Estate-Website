@@ -7,7 +7,6 @@ import {
     CarouselPrevious,
   } from "@/components/ui/carousel"
 import Image from 'next/image';
-  
 
 function Slider({imageList}: any) {
   return (
@@ -16,12 +15,12 @@ function Slider({imageList}: any) {
         <Carousel>
         <CarouselContent>
           {imageList.map((item: any, index: number) => (
-            <CarouselItem>
+            <CarouselItem className='w-full flex justify-center items-center'>
               <Image
                 src={item.imgUrl} width={800}
                 height={300}
                 alt='image'
-                className='rounded-xl object-cover h-[450px] w-[900px] ml-[300px]'
+                className='rounded-xl object-cover h-[350px] w-[70%]'
               />
             </CarouselItem>
           ))}
