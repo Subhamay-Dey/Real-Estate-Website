@@ -6,7 +6,7 @@ import MarkerItem from './MarkerItem';
 
 const containerStyle = {
     width: '100%',
-    height: '80vh',
+    height: '82vh',
     borderRadius: 10,
   };
 
@@ -37,7 +37,7 @@ coordinates && setCenter(coordinates)
 
 
   return (
-    <div>
+    <div className='mr-2'>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
