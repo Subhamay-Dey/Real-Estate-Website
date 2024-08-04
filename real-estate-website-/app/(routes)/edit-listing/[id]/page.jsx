@@ -192,7 +192,7 @@ const EditListing = ({params}) => {
               </div>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-gray-500'>Built In</h2>
-                <Input type='number' placeholder='Ex.1900 Sq.ft' name='builtin' defaultValue={listing?.builtin} onChange={handleChange}/>
+                <Input type='number' placeholder='Year 2020' name='builtin' defaultValue={listing?.builtin} onChange={handleChange}/>
               </div>
             </div>
 

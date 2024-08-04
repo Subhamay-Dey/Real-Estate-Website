@@ -16,17 +16,25 @@ function Header() {
   const {user, isSignedIn} = useUser();
 
   const [postAd, setPostAd] = useState('Search Property Address');
+  const [width, setWidth] = useState(150)
+  const [height, setHeight] = useState(150)
 
   useEffect(() => {
     const updatePlaceholder = () => {
       if (window.innerWidth <= 767) {
         setPostAd('Post Ad');
+        setWidth(150)
+        setHeight(150)
       }
       if (window.innerWidth <= 430) {
         setPostAd('Post');
-      }      
+        setWidth(20)
+        setHeight(20)
+      }
       else {
         setPostAd('Post your Ad');
+        setWidth(150)
+        setHeight(150)
       }
     };
 
@@ -44,7 +52,7 @@ function Header() {
   return (
     <div className='p-6 px-10 top-0 w-full z-10 bg-white flex justify-between shadow-sm fixed'>
       <div className='flex gap-12 items-center'>
-        <Image src={'/next.svg'} alt='logo' width={150} height={150}/>
+        <Image src={'/next.svg'} alt='logo' width={width} height={height}/>
           <ul className='hidden md:flex gap-10'>
             <Link href={'/'}><li className={`'hover:text-primary font-medium text-sm cursor-pointer' ${path=='/'&&'text-primary'}`}>For Sell</li></Link>
             <Link href={'/rent'}><li className={`'hover:text-primary font-medium text-sm cursor-pointer' ${path == '/rent' && 'text-primary'}`}>For Rent</li></Link>
