@@ -10,7 +10,7 @@ function GoogleAddressSearch({selectedAddress, setCoordinates}) {
 
   useEffect(() => {
     const updatePlaceholder = () => {
-      if (window.innerWidth <= 1023) {
+      if (window.innerWidth <= 767) {
         setPlaceholder('Search');
       } 
       else {

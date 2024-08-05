@@ -21,15 +21,15 @@ function Header() {
 
   useEffect(() => {
     const updatePlaceholder = () => {
-      if (window.innerWidth <= 767) {
+      if (window.innerWidth <= 768) {
         setPostAd('Post Ad');
         setWidth(150)
         setHeight(150)
       }
       if (window.innerWidth <= 430) {
         setPostAd('Post');
-        setWidth(20)
-        setHeight(20)
+        setWidth(110)
+        setHeight(110)
       }
       else {
         setPostAd('Post your Ad');
@@ -50,7 +50,7 @@ function Header() {
   },[])
 
   return (
-    <div className='p-6 px-10 top-0 w-full z-10 bg-white flex justify-between shadow-sm fixed'>
+    <div className='p-6 px-10 top-0 w-full z-10 gap-2 bg-white flex justify-between shadow-sm fixed'>
       <div className='flex gap-12 items-center'>
         <Image src={'/next.svg'} alt='logo' width={width} height={height}/>
           <ul className='hidden md:flex gap-10'>
@@ -61,7 +61,7 @@ function Header() {
       </div>
       <div className='flex gap-2'>
         <Link href={'/add-new-listing'}>
-          <Button className='flex gap-2'><Plus className='h-5'/> {postAd}</Button>
+          <Button className='flex gap-1'><Plus className='h-5'/> {postAd}</Button>
         </Link>
         {isSignedIn ? 
         <DropdownMenu>

@@ -70,7 +70,7 @@ function ListingMapView({type}) {
   }
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+    <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8'>
       <div>
         <Listing listing={listing}
           handleSearchClick={handleSearchClick}
@@ -82,7 +82,7 @@ function ListingMapView({type}) {
           setCoordinates = {setCoordinates}
         />
       </div>
-      <div className='fixed right-0 h-full md:w-[50%] lg:w-[50%] xl:w-[50%]'>
+      <div className='fixed right-0 h-full md:w-0 lg:w-[50%] xl:w-[50%]'>
         <GoogleMapSection
           listing = {listing}
           coordinates = {coordinates}
