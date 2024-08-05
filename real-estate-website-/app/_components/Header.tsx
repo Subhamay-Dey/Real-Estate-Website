@@ -66,8 +66,8 @@ function Header() {
         {isSignedIn ? 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-          <Image src={user?.imageUrl} width={35} height={35} alt='user Image'
-          className='rounded-full'
+          <Image src={user?.imageUrl} width={40} height={40} alt='user Image'
+          className='rounded-full cursor-pointer'
           />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
