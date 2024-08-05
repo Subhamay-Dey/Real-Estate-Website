@@ -118,7 +118,7 @@ const EditListing = ({params}) => {
 
   return (
     <>
-    <div className='px-10 md:px-36 my-10'>
+    <div className='px-10 md:px-36 mt-[120px]'>
       <h2 className='font-bold text-2xl'>Enter some more details about your listing</h2>
 
       <Formik 
@@ -141,7 +141,7 @@ const EditListing = ({params}) => {
         
         <form onSubmit={handleSubmit}>
         <div>
-          <div className='p-8 shadow-md rounded-lg space-y-10'>
+          <div className='p-8 shadow-md rounded-lg space-y-10 mt-6'>
             <div className='grid grid-cols-1 md:grid-cols-2'>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-lg text-slate-400'>Rent or Sell?</h2>

@@ -33,7 +33,7 @@ function FileUpload({setImages, imageList}){
                     multiple 
                     onChange={handleFileUpload} 
                     className="hidden" 
-                    accept='image/jpg, image/jpeg, image/png, image/gif, image/avif'
+                    accept='image/jpg, image/jpeg, image/png, image/gif, image/avif, image/webp'
                 />
             </label>
         </div> 

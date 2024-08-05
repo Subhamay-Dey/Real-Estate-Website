@@ -23,7 +23,6 @@ function Listing({listing , handleSearchClick, searchedAddress, setBedCount, set
         </Button>
       </div>
 
-    {/* -- Filter section component -- */}
     <FilterSection
       setBedCount = {setBedCount}
       setBathCount = {setBathCount}
