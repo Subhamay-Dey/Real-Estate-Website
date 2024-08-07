@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 function Slider({imageList}: any) {
   return (
-    <div className=' flex justify-center'>
+    <div className=' flex justify-center select-none'>
       {imageList ? 
         <Carousel>
         <CarouselContent>

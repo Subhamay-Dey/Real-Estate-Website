@@ -52,22 +52,22 @@ function Header() {
   return (
     <div className='p-6 px-10 top-0 w-full z-10 gap-2 bg-white flex justify-between shadow-sm fixed'>
       <div className='flex gap-12 items-center'>
-        <Image src={'/next.svg'} alt='logo' width={width} height={height}/>
+        <Image src={'/next.svg'} alt='logo' className='select-none' width={width} height={height}/>
           <ul className='hidden md:flex gap-10'>
-            <Link href={'/'}><li className={`'hover:text-primary font-medium text-sm cursor-pointer' ${path=='/'&&'text-primary'}`}>For Sell</li></Link>
-            <Link href={'/rent'}><li className={`'hover:text-primary font-medium text-sm cursor-pointer' ${path == '/rent' && 'text-primary'}`}>For Rent</li></Link>
-            <li className='hover:text-primary font-medium text-sm cursor-pointer'>Agent Finder</li>
+            <Link href={'/'}><li className={`'hover:text-primary font-medium text-sm cursor-pointer ' ${path=='/'&&'text-primary select-none'} select-none`}>For Sell</li></Link>
+            <Link href={'/rent'}><li className={`'hover:text-primary font-medium text-sm cursor-pointer ' ${path == '/rent' && 'text-primary select-none'} select-none`}>For Rent</li></Link>
+            <li className='hover:text-primary font-medium text-sm cursor-pointer select-none'>Agent Finder</li>
           </ul>
       </div>
       <div className='flex gap-2'>
         <Link href={'/add-new-listing'}>
-          <Button className='flex gap-1'><Plus className='h-5'/> {postAd}</Button>
+          <Button className='flex gap-1'><Plus className='h-5'/>{postAd}</Button>
         </Link>
         {isSignedIn ? 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
           <Image src={user?.imageUrl} width={40} height={40} alt='user Image'
-          className='rounded-full cursor-pointer'
+          className='rounded-full cursor-pointer select-none'
           />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
