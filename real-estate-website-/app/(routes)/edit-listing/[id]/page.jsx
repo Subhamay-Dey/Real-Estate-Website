@@ -23,6 +23,7 @@ const EditListing = ({params}) => {
   const [listing, setListing] = useState([]);
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState();
+  const [type, setType] = useState('')
 
   useEffect(() => {
     console.log(params.id);
@@ -146,7 +147,7 @@ const EditListing = ({params}) => {
               <div className='flex flex-col gap-2'>
                 <h2 className='text-lg text-slate-400'>Rent or Sell?</h2>
                 <RadioGroup defaultValue={listing?.type}
-                  onValueChange={(e) => values.type=e}
+                  onValueChange={(e) => {values.type=e; setType(e);}}
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="Rent" id="Rent" />
@@ -213,7 +214,7 @@ const EditListing = ({params}) => {
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               <div className='flex flex-col gap-2'>
-                <h2 className='text-gray-500'>Selling Price ($)</h2>
+                <h2 className='text-gray-500'>{ type ? (type == "Sell" ? "Selling Price" : "Renting price") : "Select the type"} ($)</h2>
                 <Input type='number' placeholder='400000' name='price' defaultValue={listing?.price} onChange={handleChange}/>
               </div>
               <div className='flex flex-col gap-2'>
