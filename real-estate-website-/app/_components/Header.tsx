@@ -5,12 +5,14 @@ import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {Plus} from "lucide-react"
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { SignOutButton, UserButton, useUser } from '@clerk/nextjs'
 import {DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuLabel,DropdownMenuSeparator,DropdownMenuTrigger} from "@/components/ui/dropdown-menu"
 import Logout from './Logout'
 
 function Header() {
+
+  const router = useRouter();
 
   const path = usePathname();
   const {user, isSignedIn} = useUser();
@@ -49,10 +51,16 @@ function Header() {
     console.log(path);
   },[])
 
+  const navigate = () => {
+    if(path !== "/") {
+      router.push("/")
+    }
+  }
+
   return (
     <div className='p-6 px-10 top-0 w-full z-10 gap-2 bg-white flex justify-between shadow-sm fixed'>
       <div className='flex gap-12 items-center'>
-        <Image src={'/next.svg'} alt='logo' className='select-none' width={width} height={height}/>
+        <Image src={'/next.svg'} alt='logo' className='select-none cursor-pointer' width={width} height={height} onClick={navigate}/>
           <ul className='hidden md:flex gap-10'>
             <Link href={'/'}><li className={`'hover:text-primary font-medium text-sm cursor-pointer ' ${path=='/'&&'text-primary select-none'} select-none`}>For Sell</li></Link>
             <Link href={'/rent'}><li className={`'hover:text-primary font-medium text-sm cursor-pointer ' ${path == '/rent' && 'text-primary select-none'} select-none`}>For Rent</li></Link>
